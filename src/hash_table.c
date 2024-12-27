@@ -3,6 +3,7 @@
 //
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "hash_table.h"
 
@@ -22,8 +23,20 @@ static void ht_del_item(ht_item *i)
     free(i);
 }
 
-//
 
+static int ht_hash(const char* strs, int prime, int num_buckets)
+{
+    long hash = 0;
+    const int len_s = strlen(strs);
+    for (int i = 0; i < len_s; ++i) {
+        hash += (long)pow(prime, len_s - (i + 1)) * strs[i];
+        hash = hash % num_buckets;
+    }
+
+    return (int)hash;
+}
+
+//
 ht_hash_table * ht_new_hash_table()
 {
     ht_hash_table *ht = malloc(sizeof(ht_hash_table));
@@ -50,3 +63,4 @@ void ht_del_hash_table(ht_hash_table *ht)
     free(ht);
 
 }
+

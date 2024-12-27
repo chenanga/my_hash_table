@@ -21,4 +21,16 @@ Hash table: 使用哈希函数的关联数组的快速映射
 ```
 
 
+## 哈希函数
+使用通用字符串哈希函数，如下伪代码 变量a为大于字母表大小的素数
+```c
+function hash(string, a, num_buckets):
+    hash = 0
+    string_len = length(string)
+    for i = 0, 1, ..., string_len:
+        hash += (a ** (string_len - (i+1))) * char_code(string[i])
+    hash = hash % num_buckets
+    return hash
+```
+
 参考教程: https://github.com/jamesroutley/write-a-hash-table
