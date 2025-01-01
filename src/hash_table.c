@@ -109,7 +109,7 @@ void ht_del_hash_table(ht_hash_table *ht)
     }
 
     for (int i = 0; i < ht->size; ++i) {
-        if (ht->items[i]) {
+        if (ht->items[i] && ht->items[i] != &HT_DELETED_ITEM) {
             ht_del_item(ht->items[i]);
         }
     }
