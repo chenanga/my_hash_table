@@ -5,11 +5,31 @@ set(CMAKE_C_STANDARD 11)
 
 #set(CMAKE_CXX_STANDARD 14)
 
+# 包含头文件目录
 include_directories(src)
 
-add_executable(my_hash_table
+# 公共源文件列表
+set(SRC_FILES
         src/hash_table.c
         src/hash_table.h
-        src/main.c
         src/prime.c
-        src/prime.h)
+        src/prime.h
+)
+
+# 主程序
+add_executable(my_hash_table
+        ${SRC_FILES}
+        src/main.c
+)
+
+# 功能测试程序
+add_executable(functional_tests
+        ${SRC_FILES}
+        tests/test_functional.c
+)
+
+# 性能测试程序
+add_executable(performance_tests
+        ${SRC_FILES}
+        tests/test_performance.c
+)
