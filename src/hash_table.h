@@ -5,8 +5,8 @@
 #ifndef MY_HASH_TABLE_HSAH_TABLE_H
 #define MY_HASH_TABLE_HSAH_TABLE_H
 
-#define HT_PRIME_1 1
-#define HT_PRIME_2 2
+#define HT_PRIME_1 2
+#define HT_PRIME_2 3
 #define HT_INITIAL_BASE_SIZE 51
 
 typedef struct {
