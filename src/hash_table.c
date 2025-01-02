@@ -42,7 +42,7 @@ static int ht_hash(const char* strs, int prime, int num_buckets)
 static int ht_get_hash(const char* strs, int num_buckets, const int attempt)
 {
     const int hash_a = ht_hash(strs, HT_PRIME_1, num_buckets);
-    const int hash_b = ht_hash(strs, HT_PRIME_2, num_buckets);
+    const int hash_b = ht_hash(strs, HT_PRIME_2, num_buckets - 1);
 
     return (hash_a + attempt * (hash_b + 1)) % num_buckets;
 }
@@ -180,6 +180,7 @@ void ht_delete(ht_hash_table* ht, const char* key)
             ht_del_item(ht->items[index]);
             ht->count --;
             ht->items[index] = &HT_DELETED_ITEM;
+            return;
         }
         index = ht_get_hash(key, ht->size, attempt++);
     }
