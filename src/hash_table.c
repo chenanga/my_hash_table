@@ -81,8 +81,11 @@ static void ht_resize(ht_hash_table *ht, const int base_size)
         ht_insert(new_ht, ht->items[i]->key, ht->items[i]->value);
     }
 
-    ht->size = new_ht->size;
+    ht->count = new_ht->count;
     ht->base_size = new_ht->base_size;
+    const int tmp_size = ht->size;
+    ht->size = new_ht->size;
+    new_ht->size = tmp_size;
 
     ht_item **tmp_items = ht->items;
     ht->items = new_ht->items;
